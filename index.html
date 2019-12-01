@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+    <head>
+        <title>genpassgen</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <header>
+            <div class="navbar navbar-dark bg-dark">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <strong>genpassgen</strong>
+                    </div>
+                    <div class="navbar-brand">
+                        <small>The Generator of Password Generators</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="py-5 bg-light">
+            <div class="container">
+                <div class="form-group row">
+                    <label for="password-length" class="col-2 col-form-label">Password length</label>
+                    <div class="col-3">
+                        <input class="form-control" type="number" value="16" id="password-length">
+                    </div>
+                </div>
+
+                <h3>Include characters</h3>
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" checked="true" id="include-upper-cases">
+                        Include upper cases (ABC...)
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" checked="true" id="include-lower-cases">
+                        Include lower cases (abc...)
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" checked="true" id="include-numbers">
+                        Include numbers (123...)
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" checked="true" id="include-symbols">
+                        Include symbols (!@#$...)
+                    </label>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label for="password-generator">Password generator (please copy and paste into your terminal)</label>
+                    <textarea id="password-generator" class="form-control" rows="4" readonly></textarea>
+                </div>
+
+                <button type="button" id="copy-to-clipboard" class="btn btn-primary">Copy to clipboard</button>
+            </div>
+        </div>
+
+        <footer class="py-3 footer">
+            <div class="container">
+                You can visit my <a href="https://github.com/johnlinp/genpassgen">project home</a>.
+            </div>
+        </footer>
+
+        <script src="./index.js"></script>
+    </body>
+</html>
