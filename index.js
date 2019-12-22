@@ -15,7 +15,25 @@ var generatePasswordGenerator = function(length, upper, lower, number, symbol) {
     if (symbol) {
         codeLines.push('candidates.extend(string.punctuation)');
     }
-    codeLines.push('choices = [secrets.choice(candidates) for _ in range(' + length + ')]');
+    codeLines.push('while True:')
+    codeLines.push('    choices = [secrets.choice(candidates) for _ in range(' + length + ')]');
+    if (upper) {
+        codeLines.push('    if not any(char in choices for char in string.ascii_uppercase):');
+        codeLines.push('        continue');
+    }
+    if (lower) {
+        codeLines.push('    if not any(char in choices for char in string.ascii_lowercase):');
+        codeLines.push('        continue');
+    }
+    if (number) {
+        codeLines.push('    if not any(char in choices for char in string.digits):');
+        codeLines.push('        continue');
+    }
+    if (symbol) {
+        codeLines.push('    if not any(char in choices for char in string.punctuation):');
+        codeLines.push('        continue');
+    }
+    codeLines.push('    break');
     codeLines.push('password = "".join(choices)');
     codeLines.push('print(password)');
     return "python3 -c '" + codeLines.join('\n') + "'";
