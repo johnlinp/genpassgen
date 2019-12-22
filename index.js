@@ -35,7 +35,8 @@ var generatePasswordGenerator = function(length, upper, lower, number, symbol) {
     }
     codeLines.push('    break');
     codeLines.push('password = "".join(choices)');
-    codeLines.push('print(password)');
+    codeLines.push('message = "Generated password: {0}".format(password)');
+    codeLines.push('print("{1}\\n{0}\\n{1}".format(message, "-" * len(message)))');
     return "python3 -c '" + codeLines.join('\n') + "'";
 };
 
