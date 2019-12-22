@@ -18,7 +18,7 @@ var generatePasswordGenerator = function(length, upper, lower, number, symbol) {
     codeLines.push('choices = [secrets.choice(candidates) for _ in range(' + length + ')]');
     codeLines.push('password = "".join(choices)');
     codeLines.push('print(password)');
-    return "python3 -c '" + codeLines.join('; ') + "'";
+    return "python3 -c '" + codeLines.join('\n') + "'";
 };
 
 var fillPasswordGenerator = function() {
@@ -37,6 +37,8 @@ var fillPasswordGenerator = function() {
         includeNumbers.checked,
         includeSymbols.checked
     );
+
+    passwordGenerator.rows = passwordGenerator.value.split('\n').length;
 };
 
 var copyPasswordGeneratorToClipboard = function() {
