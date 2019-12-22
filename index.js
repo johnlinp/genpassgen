@@ -90,6 +90,15 @@ var registerChangeToFillPasswordGenerator = function() {
     });
 };
 
+var registerLengthChangeToUpdateLabel = function() {
+    var passwordLength = document.getElementById('password-length');
+    var passwordLengthLabel = document.getElementById('password-length-label');
+
+    passwordLength.addEventListener('input', function(evt) {
+        passwordLengthLabel.innerHTML = passwordLength.value;
+    });
+};
+
 var registerCopyToClipboard = function() {
     var copyToClipboard = document.getElementById('copy-to-clipboard');
     copyToClipboard.addEventListener('click', function() {
@@ -99,6 +108,7 @@ var registerCopyToClipboard = function() {
 
 var main = function() {
     registerChangeToFillPasswordGenerator();
+    registerLengthChangeToUpdateLabel();
     registerCopyToClipboard();
     fillPasswordGenerator();
 };

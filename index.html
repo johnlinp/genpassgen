@@ -24,11 +24,13 @@
             <div class="container">
                 <h2>Password Configuration</h2>
 
+                <h3>Length</h3>
+
                 <div class="form-group row">
-                    <label for="password-length" class="col-2 col-form-label">Password length</label>
                     <div class="col-3">
-                        <input class="form-control" type="number" value="16" id="password-length">
+                        <input class="form-control" type="range" value="16" min="4" max="128" id="password-length">
                     </div>
+                    <label for="password-length" class="col-2 col-form-label" id="password-length-label">16</label>
                 </div>
 
                 <h3>Include characters</h3>
