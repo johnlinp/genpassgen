@@ -1,4 +1,6 @@
-var generatePasswordGenerator = function(length, upper, lower, number, symbol) {
+var generatePasswordGenerator = function(length, upper, lower, number, symbol, symbols) {
+    var symbolsString = 'r"' + symbols.replace(/"/g, '\\"').replace(/'/g, "'\\''") + '"';
+
     var codeLines = [];
     codeLines.push('import secrets');
     codeLines.push('import string');
@@ -12,8 +14,8 @@ var generatePasswordGenerator = function(length, upper, lower, number, symbol) {
     if (number) {
         codeLines.push('candidates.extend(string.digits)');
     }
-    if (symbol) {
-        codeLines.push('candidates.extend(string.punctuation)');
+    if (symbol && symbols) {
+        codeLines.push('candidates.extend(' + symbolsString + ')');
     }
     codeLines.push('while True:')
     codeLines.push('    choices = [secrets.choice(candidates) for _ in range(' + length + ')]');
@@ -29,8 +31,8 @@ var generatePasswordGenerator = function(length, upper, lower, number, symbol) {
         codeLines.push('    if not any(char in choices for char in string.digits):');
         codeLines.push('        continue');
     }
-    if (symbol) {
-        codeLines.push('    if not any(char in choices for char in string.punctuation):');
+    if (symbol && symbols) {
+        codeLines.push('    if not any(char in choices for char in ' + symbolsString + '):');
         codeLines.push('        continue');
     }
     codeLines.push('    break');
@@ -46,6 +48,7 @@ var fillPasswordGenerator = function() {
     var includeLowerCases = document.getElementById('include-lower-cases');
     var includeNumbers = document.getElementById('include-numbers');
     var includeSymbols = document.getElementById('include-symbols');
+    var symbolsIncluded = document.getElementById('symbols-included');
 
     var passwordGenerator = document.getElementById('password-generator');
 
@@ -54,7 +57,8 @@ var fillPasswordGenerator = function() {
         includeUpperCases.checked,
         includeLowerCases.checked,
         includeNumbers.checked,
-        includeSymbols.checked
+        includeSymbols.checked,
+        symbolsIncluded.value
     );
 
     passwordGenerator.rows = passwordGenerator.value.split('\n').length;
@@ -66,7 +70,7 @@ var copyPasswordGeneratorToClipboard = function() {
     document.execCommand('copy');
 };
 
-var registerChangeToFillPasswordGenerator = function() {
+var registerUpdateToFillPasswordGenerator = function() {
     var numbers = [
         document.getElementById('password-length'),
     ];
@@ -76,6 +80,10 @@ var registerChangeToFillPasswordGenerator = function() {
         document.getElementById('include-lower-cases'),
         document.getElementById('include-numbers'),
         document.getElementById('include-symbols'),
+    ];
+
+    var texts = [
+        document.getElementById('symbols-included'),
     ];
 
     var inputFields = [].concat(numbers).concat(checkboxes);
@@ -88,6 +96,21 @@ var registerChangeToFillPasswordGenerator = function() {
             }
             fillPasswordGenerator();
         });
+    });
+
+    texts.forEach(function(text) {
+        text.addEventListener('keyup', function(evt) {
+            fillPasswordGenerator();
+        });
+    });
+};
+
+var registerSymbolCheckboxToControlSymbolText = function() {
+    var includeSymbols = document.getElementById('include-symbols');
+    var symbolsIncluded = document.getElementById('symbols-included');
+
+    includeSymbols.addEventListener('change', function(evt) {
+        symbolsIncluded.disabled = (!includeSymbols.checked);
     });
 };
 
@@ -108,7 +131,8 @@ var registerCopyToClipboard = function() {
 };
 
 var main = function() {
-    registerChangeToFillPasswordGenerator();
+    registerUpdateToFillPasswordGenerator();
+    registerSymbolCheckboxToControlSymbolText();
     registerLengthChangeToUpdateLabel();
     registerCopyToClipboard();
     fillPasswordGenerator();
