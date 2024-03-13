@@ -23,58 +23,69 @@
 
         <div class="py-5 bg-light">
             <div class="container">
-                <h2>Password Configuration</h2>
+                <h2>Step 1: Config the Password Generator</h2>
 
-                <h3>Length</h3>
+                <div class="ml-5">
+                    <h3>Length</h3>
 
-                <div class="form-group row">
-                    <div class="col-3">
-                        <input class="form-control" type="range" value="36" min="4" max="64" id="password-length">
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <input class="form-control" type="range" value="36" min="4" max="64" id="password-length">
+                        </div>
+                        <label for="password-length" class="col-2 col-form-label" id="password-length-label">36</label>
                     </div>
-                    <label for="password-length" class="col-2 col-form-label" id="password-length-label">36</label>
-                </div>
 
-                <h3>Include characters</h3>
+                    <h3>Include characters</h3>
 
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" checked="true" id="include-upper-cases">
-                        Include upper cases (ABC...)
-                    </label>
-                </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" checked="true" id="include-upper-cases">
+                            Include upper cases (ABC...)
+                        </label>
+                    </div>
 
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" checked="true" id="include-lower-cases">
-                        Include lower cases (abc...)
-                    </label>
-                </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" checked="true" id="include-lower-cases">
+                            Include lower cases (abc...)
+                        </label>
+                    </div>
 
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" checked="true" id="include-numbers">
-                        Include numbers (123...)
-                    </label>
-                </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" checked="true" id="include-numbers">
+                            Include numbers (123...)
+                        </label>
+                    </div>
 
-                <div class="form-inline">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" checked="true" id="include-symbols">
-                        Include symbols
-                    </label>
-                    <input class="form-control form-control-sm" type="input" id="symbols-included" value="!@#$%^+=" size="30" style="margin-left: 0.5em">
+                    <div class="form-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" checked="true" id="include-symbols">
+                            Include symbols
+                        </label>
+                        <input class="form-control form-control-sm" type="input" id="symbols-included" value="!@#$%^+=" size="30" style="margin-left: 0.5em">
+                    </div>
                 </div>
 
                 <hr>
 
-                <h2>Password Generator</h2>
+                <h2>Step 2: Copy the Code of the Password Generator</h2>
 
-                <div class="form-group">
-                    <label for="password-generator">Please copy and paste into your terminal</label>
-                    <textarea id="password-generator" class="form-control" readonly></textarea>
+                <div class="ml-5">
+                    <div class="form-group">
+                        <textarea id="password-generator" class="form-control" readonly></textarea>
+                    </div>
+
+                    <button type="button" id="copy-to-clipboard" class="btn btn-primary">Copy to clipboard</button>
                 </div>
 
-                <button type="button" id="copy-to-clipboard" class="btn btn-primary">Copy to clipboard</button>
+                <hr>
+
+                <h2>Step 3: Run the Password Generator on Your Computer</h2>
+
+                <div class="ml-5">
+                    <span>Open up a terminal and paste the code that you just copied, and then you got yourself a secure password!<span>
+                </div>
             </div>
         </div>
 
