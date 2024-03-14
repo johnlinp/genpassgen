@@ -5,7 +5,7 @@ The generator of password generators.
 
 ## Usage
 
-Please see <http://johnlin.tw/genpassgen>.
+Please see <https://johnlin.tw/genpassgen>.
 
 
 ## Why?
